@@ -11,7 +11,9 @@ class App extends Component {
         <Counter value={store.getState().counter}
         onIncrement={ (n)=> ()=> store.dispatch({ type: 'INCREMENT', num: n })}
         />
-        <Todo todos={store.getState().todo}/>
+        <Todo todos={store.getState().todo}
+        onAddTodo={ (text)=> ()=> store.dispatch({ type: 'ADD-TODO', text: text, id:  store.getState().todo.length})}
+        />
       </div>
     );
   }
