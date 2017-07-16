@@ -1,18 +1,32 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './app.css';
+import { createStore } from 'redux';
+
+const counter = (state = 0, action) => {
+  switch (action.type){
+    case 'INCREMENT':
+      return state + 1;
+    case 'DECREMENT':
+      return state - 1;
+    default:
+      return state;
+  }
+};
+
+const store = createStore(counter);
+
+const Counter = ({value, onIncrement, onDecrement}) => (
+  <div>
+    <h1>{value}</h1>
+    <button onClick={onIncrement}>Plus</button>
+    <button onClick={onDecrement}>Minus</button>
+  </div>
+)
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/app.js</code> and save to reload.
-        </p>
+        <Counter value={store.getState()} />
       </div>
     );
   }
