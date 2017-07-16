@@ -6,9 +6,7 @@ import ReactDOM from 'react-dom';
 const counter = (state = 0, action) => {
   switch (action.type){
     case 'INCREMENT':
-      return state + 1;
-    case 'DECREMENT':
-      return state - 1;
+      return state + action.num;
     default:
       return state;
   }
@@ -16,11 +14,12 @@ const counter = (state = 0, action) => {
 
 const store = createStore(counter);
 
-const Counter = ({value, onIncrement, onDecrement}) => (
+const Counter = ({value, onIncrement}) => (
   <div>
     <h1>{value}</h1>
-    <button onClick={onIncrement}>Plus</button>
-    <button onClick={onDecrement}>Minus</button>
+    <button onClick={onIncrement(1)}>Plus 1</button>
+    <button onClick={onIncrement(-1)}>Minus 1</button>
+    <button onClick={onIncrement(10)}>Plus 10</button>
   </div>
 )
 
@@ -29,8 +28,7 @@ class App extends Component {
     return (
       <div className="App">
         <Counter value={store.getState()}
-        onIncrement={ ()=> store.dispatch({ type: 'INCREMENT' })}
-        onDecrement={ ()=> store.dispatch({ type: 'DECREMENT' })}
+        onIncrement={ (n)=> ()=> store.dispatch({ type: 'INCREMENT', num: n })}
         />
       </div>
     );
