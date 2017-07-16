@@ -28,11 +28,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Counter value={store.getState()} onIncrement={ ()=> {
-          console.log('FUCK COME ON GIO');
-          store.dispatch({ type: 'INCREMENT' })
-        } } />
-
+        <Counter value={store.getState()}
+        onIncrement={ ()=> store.dispatch({ type: 'INCREMENT' })}
+        onDecrement={ ()=> store.dispatch({ type: 'DECREMENT' })}
+        />
       </div>
     );
   }
