@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { createStore } from 'redux';
+import ReactDOM from 'react-dom';
+
 
 const counter = (state = 0, action) => {
   switch (action.type){
@@ -26,10 +28,20 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Counter value={store.getState()} />
+        <Counter value={store.getState()} onIncrement={ ()=> {
+          console.log('FUCK COME ON GIO');
+          store.dispatch({ type: 'INCREMENT' })
+        } } />
+
       </div>
     );
   }
 }
+
+const render = ()=>{
+  ReactDOM.render(<App />, document.getElementById('root'));
+}
+render();
+store.subscribe(render);
 
 export default App;
