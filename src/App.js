@@ -7,7 +7,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Counter value={store.getState()}
+        <Counter value={store.getState().counter}
         onIncrement={ (n)=> ()=> store.dispatch({ type: 'INCREMENT', num: n })}
         />
       </div>
