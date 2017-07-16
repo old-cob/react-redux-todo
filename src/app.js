@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import store from './store';
 import Counter from './components/counter';
+import Todo from './components/todo';
 
 class App extends Component {
   render() {
@@ -10,6 +11,7 @@ class App extends Component {
         <Counter value={store.getState().counter}
         onIncrement={ (n)=> ()=> store.dispatch({ type: 'INCREMENT', num: n })}
         />
+        <Todo todos={store.getState().todo}/>
       </div>
     );
   }

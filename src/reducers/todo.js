@@ -4,6 +4,7 @@ const todo = (state = [], action)=>{
       return [
         ...state,
         {
+          id: action.id,
           text: action.text,
           completed: false,
         }
